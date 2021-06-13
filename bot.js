@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 var Chance = require('chance');
 const client = new Discord.Client();
+var dataset = require('./dataset.json'); 
 
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
@@ -8,7 +9,7 @@ client.on('ready', () => {
     status: 'online',
     activity: {
         name: ">help",
-        type: "STREAMING"
+        type: "PLAYING"
     }
 });
 });
@@ -34,21 +35,25 @@ client.on("message", function (message) {
   const changelog = new Discord.MessageEmbed()
       .setColor("#010101")
       .setTitle('Changelog')
-      .setDescription(
-        "v1.0: Gacha function, ping function\nv1.1: Added temporary roles, additional roles to role pool and bugfixes"
-        );
+      .setDescription();
   //help
   const help = new Discord.MessageEmbed()
       .setColor("#010101")
       .setAuthor(message.author.username, message.author.avatarURL())
       .setTitle('List of commands: ')
-      .setDescription("Prefix: >\n`>gacha`: Run this command in the <#853518789706514443> channel to get limited roles\n`>ping`: Check's bot ping");
+      .setDescription(dataset.HELP_DESC);
   //invalid command
   const invalidCmd = new Discord.MessageEmbed()
       .setColor("#FF0000")
       .setAuthor(message.author.username, message.author.avatarURL())
       .setTitle("Invalid command!")
       .setDescription("You have no permission to command or string was invalid.");
+  //homework
+  const homework = new Discord.MessageEmbed()
+      .setColor("#59ffdb")
+      .setAuthor(message.author.username, message.author.avatarURL())
+      .setTitle(`List of homework due as of ${da}-${mo}-${ye}`)
+      .setDescription(dataset.HOMEWORK);
 
   // roles
   let ganyuGrace = message.guild.roles.cache.find(r => r.id === "853529776307961856");
@@ -179,14 +184,7 @@ client.on("message", function (message) {
     }
   }
 
-  if (command === "homework") {
-    var homeworkList = require('./homework.json');  
-    //homework
-    const homework = new Discord.MessageEmbed()
-        .setColor("#59ffdb")
-        .setAuthor(message.author.username, message.author.avatarURL())
-        .setTitle(`List of homework due as of ${da}-${mo}-${ye}`)
-        .setDescription(homeworkList.HOMEWORK);
+  if (command === "homework") { 
     message.channel.send(homework);
   }
 
