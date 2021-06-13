@@ -3,13 +3,14 @@ var Chance = require('chance');
 const client = new Discord.Client();
 
 client.on('ready', () => {
-  client.user.setPresence({
-    game: {
-      name: "with Sean's hands"
-    },
-    status: "online"
-  });
 	console.log(`Logged in as ${client.user.tag}!`);
+  client.user.setPresence({
+    status: 'online',
+    activity: {
+        name: "sean sleeping on the floor",
+        type: "WATCHING"
+    }
+});
 });
 
 const prefix = ">";
