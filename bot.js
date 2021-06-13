@@ -35,7 +35,7 @@ client.on("message", function (message) {
   const changelog = new Discord.MessageEmbed()
       .setColor("#010101")
       .setTitle('Changelog')
-      .setDescription();
+      .setDescription(dataset.CHANGELOG);
   //help
   const help = new Discord.MessageEmbed()
       .setColor("#010101")
