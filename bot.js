@@ -3,6 +3,12 @@ var Chance = require('chance');
 const client = new Discord.Client();
 
 client.on('ready', () => {
+  client.user.setPresence({
+    game: {
+      name: "with Sean's hands"
+    },
+    status: "online"
+  });
 	console.log(`Logged in as ${client.user.tag}!`);
 });
 
@@ -102,7 +108,7 @@ client.on("message", function (message) {
           return "lmao i can't stop laughing u got muted for 20mins";
       }
       
-      
+
       if(result >= 71 && result <=100) {
           return 'I had your reward but <@393373395149914113> stole it';
       }
@@ -131,8 +137,6 @@ client.on("message", function (message) {
   if (command === "gacha") {
     message.channel.send(gachaEmbed);
   }
-
-
 
 });
 
