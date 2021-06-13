@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 var Chance = require('chance');
 const client = new Discord.Client();
+const homeworkList = require('./homework.json')
 
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
@@ -43,7 +44,12 @@ client.on("message", function (message) {
       .setAuthor(message.author.username, message.author.avatarURL())
       .setTitle("Invalid command!")
       .setDescription("You have no permission to command or string was invalid.");
-
+  //homework
+  const homework = new Discord.MessageEmbed()
+      .setColor("#59ffdb")
+      .setAuthor(message.author.username, message.author.avatarURL())
+      .setTitle(`List of homework due as of ${Date.now()}`)
+      .setDescription(homeworkList.HOMEWORK);
 
   // roles
   let ganyuGrace = message.guild.roles.cache.find(r => r.id === "853529776307961856");
@@ -151,7 +157,6 @@ client.on("message", function (message) {
       .setDescription(pull());
 
   // if command loops
-
   if (command === "ping") {
     message.channel.send(`Pong! This message had a latency of ${Math.round(client.ws.ping)} ms.`)
   }
@@ -173,6 +178,10 @@ client.on("message", function (message) {
     if (command === "changelog") {
       message.channel.send(invalidCmd);
     }
+  }
+
+  if (command === "homework") {
+    message.channel.send(homework);
   }
 
 });
