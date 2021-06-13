@@ -139,6 +139,26 @@ client.on("message", function (message) {
     message.channel.send(gachaEmbed);
   }
 
+  if (command === "help") {
+    new Discord.MessageEmbed()
+      .setColor("#010101")
+      .setAuthor(message.author.username, message.author.avatarURL())
+      .setTitle('List of commands: ')
+      .setDescription("Prefix: >\n`>gacha`: Run this command in the <#853518789706514443> channel to get limited roles\n`>ping`: Check's bot ping");
+  }
+
+  if (member.roles.cache.has('841246634267377675')) {
+    if (command === "changelog") {
+      new Discord.MessageEmbed()
+      .setColor("#010101")
+      .setTitle('Changelog')
+      .setDescription(
+        "v1.0: Gacha function, ping function\nv1.1: Added temporary roles, additional roles to role pool and bugfixes"
+        );
+    }
+    
+  }
+
 });
 
 client.login(process.env.BOT_TOKEN);
