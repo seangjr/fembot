@@ -179,7 +179,7 @@ client.on("message", function (message) {
     }
   }
 
-  if (command === "homework" || "hw") {
+  if (command === "homework") {
     var homeworkList = require('./homework.json');  
     //homework
     const homework = new Discord.MessageEmbed()
