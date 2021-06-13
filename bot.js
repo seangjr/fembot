@@ -22,11 +22,19 @@ client.on("message", function (message) {
   let lovedByGod = message.guild.roles.cache.find(r => r.id === "853539423542968350");
   let bakaMitai = message.guild.roles.cache.find(r => r.id === "853543265486897162");
   let simpRole = message.guild.roles.cache.find(r => r.id === "842010444478939146");
+  let shame = message.guild.roles.cache.find(r => r.id === "841893441059553320");
+  let rickrole = message.guild.roles.cache.find(r => r.id === "853588881441423371");
 
 
   //member rolling function
   let member = message.member;
 
+  //rick rolled link
+  let rickroleMessage = new Discord.MessageEmbed()
+      .setColor('#010101')
+      .setTitle('Secret Gacha Prize')
+      .setAuthor('Femboy Fox Bot', 'https://i.ibb.co/cCcBJKR/9265f52d2767dc5ebd15fc47ac980692.jpg')
+      .addField("You won a secret gacha prize! Keep it secret at all costs.", "[Click here](https://www.youtube.com/watch?v=O91DT1pR1ew) to view the prize.")
 
   /**
    * gacha roles function
@@ -34,7 +42,7 @@ client.on("message", function (message) {
    */
   var chance = new Chance();
   var roll = function() {
-      return chance.integer({ min: 1, max: 100 })
+      return chance.integer({ min: 1, max: 200 })
   }
 
   var pull = function() {
@@ -43,17 +51,17 @@ client.on("message", function (message) {
 
       if(result == 1 ) {
         member.roles.add(ganyuGrace);
-          return `Congrats <@${message.author.id}>! You just got the rarest <@&853529776307961856>!`;
+          return `congrats <@${message.author.id}>! you just got the rarest <@&853529776307961856>!`;
       }
 
       if(result >= 2 && result <= 4) {
         member.roles.add(lovedByGod);
-          return `Nice <@${message.author.id}> you just got the <@&853539423542968350> role`;
+          return `nice <@${message.author.id}> you're loved by GOD!`;
       }
 
       if(result >= 5 && result <= 10) {
         member.roles.add(bakaMitai);
-          return 'You got the <@&853543265486897162> role!';
+          return 'you got the <@&853543265486897162> role!';
       }
 
       if(result >= 10 && result <= 15) {
@@ -61,25 +69,43 @@ client.on("message", function (message) {
         setTimeout(() => {
           member.roles.remove(simpRole);
         }, 1.728E+8);
-          return 'lol simp! you got the simp role lmao';
+          return 'lol simp! you got the simp role lmao haha';
       }
 
       if(result >= 16 && result <= 20) {
         return 'you almost got lucky <3 sadge';
       }
 
+      
       if(result >= 21 && result <= 40) {
+        member.roles.add(rickrole);
+        setTimeout(() => {
+          member.roles.remove(rickrole);
+        }, 1.728E+8);
+        message.author.send(rickroleMessage);
+          return `No reward!`;
+      }
+            
+
+      if(result >= 41 && result <= 70) {
+        member.roles.add(shame);
+        setTimeout(() => {
+          member.roles.remove(shame);
+        }, 1.2E+6);
+          return "lmao i can't stop laughing u got muted for 20mins";
+      }
+      
+
+      if(result >= 71 && result <=100) {
           return 'I had your reward but <@393373395149914113> stole it';
       }
 
-      if(result >= 41 && result <=48) {
+      if(result >= 101 && result <= 120) {
           return 'No reward!';
       }
+      
+    return 'No reward!';
 
-      if(result >= 49 && result <= 60) {
-          return 'No reward!';
-      }
-      return 'No reward!';
   }
 
   //gacha embed message
