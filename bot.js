@@ -55,7 +55,7 @@ client.on("message", function (message) {
 
       if(result >= 5 && result <= 10) {
         member.roles.add(bakaMitai);
-          return 'You got the <@&853543265486897162> role nice!';
+          return 'You got the <@&853543265486897162> role!';
       }
 
       if(result >= 10 && result <= 15) {
