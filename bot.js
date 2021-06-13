@@ -180,7 +180,7 @@ client.on("message", function (message) {
     }
   }
 
-  if (command === "homework") {
+  if (command === "homework" || "hw") {
     message.channel.send(homework);
   }
 
