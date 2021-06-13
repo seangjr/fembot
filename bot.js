@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 var Chance = require('chance');
 const client = new Discord.Client();
-const homeworkList = require('./homework.json')
+const homeworkList = require('./homework.json');
 
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
@@ -13,6 +13,12 @@ client.on('ready', () => {
     }
 });
 });
+
+//date formatting
+let d = new Date();
+let ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+let mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
+let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
 
 const prefix = ">";
 
@@ -48,7 +54,7 @@ client.on("message", function (message) {
   const homework = new Discord.MessageEmbed()
       .setColor("#59ffdb")
       .setAuthor(message.author.username, message.author.avatarURL())
-      .setTitle(`List of homework due as of ${Date.now()}`)
+      .setTitle(`List of homework due as of ${da}-${mo}-${ye}`)
       .setDescription(homeworkList.HOMEWORK);
 
   // roles
