@@ -17,14 +17,12 @@ client.on("message", function (message) {
   const args = commandBody.split(' ');
   const command = args.shift().toLowerCase();
 
-  //temp role function
-  
-
   // roles
   let ganyuGrace = message.guild.roles.cache.find(r => r.id === "853529776307961856");
   let lovedByGod = message.guild.roles.cache.find(r => r.id === "853539423542968350");
   let bakaMitai = message.guild.roles.cache.find(r => r.id === "853543265486897162");
   let simpRole = message.guild.roles.cache.find(r => r.id === "842010444478939146");
+
 
   //member rolling function
   let member = message.member;
@@ -60,7 +58,10 @@ client.on("message", function (message) {
 
       if(result >= 10 && result <= 15) {
         member.roles.add(simpRole);
-          return 'lol simp! you got the role lmao';
+        setTimeout(() => {
+          member.roles.remove(simpRole);
+        }, 1.728E+8);
+          return 'lol simp! you got the simp role lmao';
       }
 
       if(result >= 16 && result <= 20) {
@@ -97,6 +98,8 @@ client.on("message", function (message) {
   if (command === "gacha") {
     message.channel.send(gachaEmbed);
   }
+
+
 
 });
 
