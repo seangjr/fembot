@@ -13,6 +13,11 @@ client.on('ready', () => {
     }
 });
 });
+//chance
+var chance = new Chance();
+var roll = function() {
+    return chance.integer({ min: 1, max: 200 });
+}
 
 //date formatting
 let d = new Date();
@@ -56,20 +61,20 @@ client.on("message", function (message) {
       .setDescription(dataset.HOMEWORK);
 
   // roles
-  let ganyuGrace = message.guild.roles.cache.find(r => r.id === "853529776307961856");
-  let lovedByGod = message.guild.roles.cache.find(r => r.id === "853539423542968350");
-  let gingerFav = message.guild.roles.cache.find(r => r.id === "853543265486897162");
-  let simpRole = message.guild.roles.cache.find(r => r.id === "842010444478939146");
-  let shame = message.guild.roles.cache.find(r => r.id === "841893441059553320");
-  let rickrole = message.guild.roles.cache.find(r => r.id === "853588881441423371");
-  let gachaAddict = message.guild.roles.cache.find(r => r.id === "853608039214612511");
+  const ganyuGrace = message.guild.roles.cache.find(r => r.id === "853529776307961856");
+  const lovedByGod = message.guild.roles.cache.find(r => r.id === "853539423542968350");
+  const gingerFav = message.guild.roles.cache.find(r => r.id === "853543265486897162");
+  const simpRole = message.guild.roles.cache.find(r => r.id === "842010444478939146");
+  const shame = message.guild.roles.cache.find(r => r.id === "841893441059553320");
+  const rickrole = message.guild.roles.cache.find(r => r.id === "853588881441423371");
+  const gachaAddict = message.guild.roles.cache.find(r => r.id === "853608039214612511");
 
 
   //member rolling function
-  let member = message.member;
+  var member = message.member;
 
   //rick rolled link
-  let rickroleMessage = new Discord.MessageEmbed()
+  var rickroleMessage = new Discord.MessageEmbed()
       .setColor('#010101')
       .setTitle('Secret Gacha Prize')
       .setAuthor('Femboy Fox Bot', 'https://i.ibb.co/cCcBJKR/9265f52d2767dc5ebd15fc47ac980692.jpg')
@@ -79,11 +84,6 @@ client.on("message", function (message) {
    * gacha roles function
    * - has chance function
    */
-  var chance = new Chance();
-  var roll = function() {
-      return chance.integer({ min: 1, max: 200 })
-  }
-
   var pull = function() {
 
       var result = roll();
@@ -140,7 +140,6 @@ client.on("message", function (message) {
           return "lmao i can't stop laughing u got muted for 20mins";
       }
       
-
       if(result >= 71 && result <=100) {
           return 'I had your reward but <@393373395149914113> stole it';
       }
@@ -154,7 +153,7 @@ client.on("message", function (message) {
   }
 
   //gacha embed message
-  let gachaEmbed = new Discord.MessageEmbed()
+  var gachaEmbed = new Discord.MessageEmbed()
       .setColor('#'+Math.floor(Math.random()*16777215).toString(16))
       .setTitle('Gacha')
       .setAuthor(message.author.username, message.author.avatarURL())
