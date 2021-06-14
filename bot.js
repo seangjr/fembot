@@ -170,10 +170,10 @@ var homeworkCommands = client.on("message", function (message) {
   }
 
   if (command === "ping") {
-    message.channel.send("pong");
+    message.channel.send("Pong!");
   }
 
-  
+
 
 });
 
