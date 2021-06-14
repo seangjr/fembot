@@ -58,7 +58,13 @@ client.on("message", function(message) {
 
     client.commands.get('remindme').execute(message, args);
 
-  } else if (member.roles.cache.has('841246634267377675')) {
+  } else if (command == "help") {
+
+    client.commands.get('help').execute(message, args);
+
+  }
+  
+  else if (member.roles.cache.has('841246634267377675')) {
     if (command == "changelog") {
       message.channel.send(changelog);
     } else {

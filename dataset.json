@@ -1,5 +1,5 @@
 {
     "HOMEWORK": "FEP Project\nMBUS Project",
-    "HELP_DESC": "Prefix: >\n`>gacha`: Run this command in the <#853518789706514443> channel to get limited roles\n`>ping`: Check's bot ping\n`>homework`: Check homework due",
-    "CHANGELOG": "v1.0: Gacha function, ping function\nv1.1: Added temporary roles, additional roles to role pool and bugfixes\nv1.2: Added homework function and >help. Fixed minor bug issues"
+    "HELP_DESC": "Prefix: >\n`>gacha`: Run this command in the <#853518789706514443> channel to get limited roles\n`>ping`: Check's bot ping\n`>homework`: Check homework due\n`>remindme [time] [reason]`: Sets a reminder for the bot to remnind you",
+    "CHANGELOG": "v1.0: Gacha function, ping function\nv1.1: Added temporary roles, additional roles to role pool and bugfixes\nv1.2: Added homework function and >help. Fixed minor bug issues\nv1.3: Fixed bugs and added reminder function"
 }
