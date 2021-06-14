@@ -27,10 +27,15 @@ let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
 
 const prefix = ">";
 
-client.on("message", function (message) {
+client.on("message", function(message) {
 
   if (message.author.bot) return;
-  if (!message.content.startsWith(prefix)) return;
+  if (!message.content.startsWith(prefix)) {
+    return null;
+  }
+  if (message.content.startsWith(prefix) && message.content == null) {
+    return null;
+  }
 
   const commandBody = message.content.slice(prefix.length);
   const args = commandBody.split(' ');
