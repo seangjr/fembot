@@ -31,7 +31,7 @@ module.exports = {
         .setTitle("Reminder")
         .setDescription(`Success! Reminding ${message.author.username} at ${timeuser}.\n${reason}`);
 
-        db.set(`Remind.${message.author.id}`,Date.now() + ms(timeuser));
+        db.set(`remind.${message.author.id}`,Date.now() + ms(timeuser));
         message.channel.send(remindServerEmbed)
 
         const interval = setInterval(() => {
@@ -41,7 +41,6 @@ module.exports = {
                 clearInterval(interval);
             }
         }, 1000);
-
 
     }
 }
