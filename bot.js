@@ -27,13 +27,10 @@ let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
 
 const prefix = ">";
 
-client.on("message", function(message) {
+var gachaCommands = client.on("message", function(message) {
 
   if (message.author.bot) return;
   if (!message.content.startsWith(prefix)) {
-    return null;
-  }
-  if (message.content.startsWith(prefix) && message.content == null) {
     return null;
   }
 
@@ -46,18 +43,6 @@ client.on("message", function(message) {
       .setColor("#010101")
       .setTitle('Changelog')
       .setDescription(dataset.CHANGELOG);
-  //help
-  const help = new Discord.MessageEmbed()
-      .setColor("#010101")
-      .setAuthor(message.author.username, message.author.avatarURL())
-      .setTitle('List of commands: ')
-      .setDescription(dataset.HELP_DESC);
-  //homework
-  const homework = new Discord.MessageEmbed()
-      .setColor("#59ffdb")
-      .setAuthor(message.author.username, message.author.avatarURL())
-      .setTitle(`List of homework due as of ${da}-${mo}-${ye}`)
-      .setDescription(dataset.HOMEWORK);
 
   // roles
   const ganyuGrace = message.guild.roles.cache.find(r => r.id === "853529776307961856");
@@ -158,17 +143,8 @@ client.on("message", function(message) {
       .setAuthor(message.author.username, message.author.avatarURL())
       .setDescription(pull());
 
-  // if command loops
-  if (command === "ping") {
-    message.channel.send(`Pong! This message had a latency of ${Math.round(client.ws.ping)} ms.`)
-  }
-
-  else if (command === "gacha") {
+  if (command === "gacha") {
     message.channel.send(gachaEmbed);
-  }
-
-  else if (command === "help") {
-    message.channel.send(help);
   }
 
   else if (member.roles.cache.has('841246634267377675')) {
@@ -176,10 +152,28 @@ client.on("message", function(message) {
       message.channel.send(changelog);
     } 
   }
-  
-  else if (command === "homework") { 
-    message.channel.send(homework);
+
+});
+
+var homeworkCommands = client.on("message", function (message) {
+  if (message.author.bot) return;
+  if (!message.content.startsWith(prefix)) {
+    return null;
   }
+
+  const commandBody = message.content.slice(prefix.length);
+  const args = commandBody.split(' ');
+  const command = args.shift().toLowerCase();
+
+  if (command === "homework") {
+    message.channel.send("test");
+  }
+
+  if (command === "ping") {
+    message.channel.send("pong");
+  }
+
+  
 
 });
 
