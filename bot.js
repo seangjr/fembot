@@ -15,7 +15,7 @@ client.on('ready', () => {
 });
 //chance
 var chance = new Chance();
-async var roll = function() {
+var roll = function() {
     return chance.integer({ min: 1, max: 200 });
 }
 
@@ -27,7 +27,7 @@ let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
 
 const prefix = ">";
 
-client.on("message", async function (message) {
+client.on("message", function (message) {
 
   if (message.author.bot) return;
   if (!message.content.startsWith(prefix)) return;
@@ -47,12 +47,6 @@ client.on("message", async function (message) {
       .setAuthor(message.author.username, message.author.avatarURL())
       .setTitle('List of commands: ')
       .setDescription(dataset.HELP_DESC);
-  //invalid command
-  const invalidCmd = new Discord.MessageEmbed()
-      .setColor("#FF0000")
-      .setAuthor(message.author.username, message.author.avatarURL())
-      .setTitle("Invalid command!")
-      .setDescription("You have no permission to command or string was invalid.");
   //homework
   const homework = new Discord.MessageEmbed()
       .setColor("#59ffdb")
@@ -84,35 +78,35 @@ client.on("message", async function (message) {
    * gacha roles function
    * - has chance function
    */
-  async var pull = function() {
+  var pull = function() {
 
       var result = roll();
 
       //ganyu's grace
       if(result === 1 ) {
-        await member.roles.add(ganyuGrace);
-          return await `congrats <@${message.author.id}>! you just got the rarest <@&853529776307961856>!`;
+        member.roles.add(ganyuGrace);
+          return `congrats <@${message.author.id}>! you just got the rarest <@&853529776307961856>!`;
       }
       //loved by GOD
       else if(result >= 2 && result <= 4) {
-        await member.roles.add(lovedByGod);
-          return await `nice <@${message.author.id}> you're loved by GOD!`;
+        member.roles.add(lovedByGod);
+          return `nice <@${message.author.id}> you're loved by GOD!`;
       }
       //gacha addict
       else if (result >= 5 && result <= 7) {
-        await member.roles.add(gachaAddict);
+        member.roles.add(gachaAddict);
           return 'why are you so addicted to this?! <@&853608039214612511> given. noice.';
       }
       //ginger fav
       else if(result >= 8 && result <= 10) {
-        await member.roles.add(gingerFav);
+        member.roles.add(gingerFav);
           return "you're officially <@306794812282109953>'s favourite! :sparkles: :sparkles:";
       }
       //simp
       else if(result >= 10 && result <= 15) {
-        await member.roles.add(simpRole);
+        member.roles.add(simpRole);
         setTimeout(() => {
-          await member.roles.remove(simpRole);
+          member.roles.remove(simpRole);
         }, 1.728E+8);
           return 'lol simp! you got the simp role lmao haha';
       }
@@ -123,19 +117,19 @@ client.on("message", async function (message) {
 
       //rick role
       else if(result >= 21 && result <= 40) {
-        await member.roles.add(rickrole);
+        member.roles.add(rickrole);
         setTimeout(() => {
-          await member.roles.remove(rickrole);
+          member.roles.remove(rickrole);
         }, 1.728E+8);
-        await message.author.send(rickroleMessage);
-          return 'No reward!';
+        message.author.send(rickroleMessage);
+          return `No reward!`;
       }
             
       //mute
       else if(result >= 41 && result <= 70) {
-        await member.roles.add(shame);
+        member.roles.add(shame);
         setTimeout(() => {
-          await member.roles.remove(shame);
+          member.roles.remove(shame);
         }, 1.2E+6);
           return "lmao i can't stop laughing u got muted for 20mins";
       }
@@ -165,7 +159,7 @@ client.on("message", async function (message) {
   }
 
   else if (command === "gacha") {
-    await message.channel.send(gachaEmbed);
+    message.channel.send(gachaEmbed);
   }
 
   else if (command === "help") {
