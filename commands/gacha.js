@@ -1,10 +1,10 @@
 var Chance = require('chance');
+const Discord = require('discord.js');
 //chance
 var chance = new Chance();
 var roll = function() {
     return chance.integer({ min: 1, max: 200 });
 }
-
 
 module.exports = {
     name: 'gacha',
