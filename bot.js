@@ -10,6 +10,7 @@ for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
 
   client.commands.set(command.name, command);
+
 }
 
 client.on('ready', () => {
@@ -40,21 +41,23 @@ client.on("message", function(message) {
       .setDescription(dataset.CHANGELOG);
 
   if (command === "gacha") {
+
     client.commands.get('gacha').execute(message, args);
-  }
 
-  if (command === "ping") {
+  } else if (command == "ping") {
+
     client.commands.get('ping').execute(message, args);
-  }
 
-  if (command === "homework") {
+  } else if (command == "homework") {
+
     client.commands.get('homework').execute(message, args);
-  }
 
-  else if (member.roles.cache.has('841246634267377675')) {
+  } else if (member.roles.cache.has('841246634267377675')) {
     if (command === "changelog") {
       message.channel.send(changelog);
-    } 
+    }
+  } else if (command == "") {
+    message.channel.send("Enter a valid command!");
   }
 
 });
