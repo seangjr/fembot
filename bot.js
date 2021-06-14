@@ -62,17 +62,17 @@ client.on("message", function(message) {
 
     client.commands.get('help').execute(message, args);
 
-  }
+  } else if (command == "changelog") {
+
+    message.channel.send(changelog);
+
+  } 
   
-  else if (member.roles.cache.has('841246634267377675')) {
-    if (command == "changelog") {
-      message.channel.send(changelog);
-    } else {
-      message.channel.send(new Discord.MessageEmbed()
-          .setColor("#FF0000")
-          .setAuthor(message.author.username, message.author.avatarURL())
-          .setDescription("No permission or command doesn't exist!"))
-    }
+  else {
+    message.channel.send(new Discord.MessageEmbed()
+        .setColor("#FF0000")
+        .setAuthor(message.author.username, message.author.avatarURL())
+        .setDescription("No permission or command doesn't exist!"))
   }
 
 });
