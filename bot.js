@@ -34,6 +34,8 @@ client.on("message", function(message) {
   const args = commandBody.split(' ');
   const command = args.shift().toLowerCase();
 
+  var member = message.member;
+
   //changelog
   const changelog = new Discord.MessageEmbed()
       .setColor("#010101")
@@ -53,11 +55,11 @@ client.on("message", function(message) {
     client.commands.get('homework').execute(message, args);
 
   } else if (member.roles.cache.has('841246634267377675')) {
-    if (command === "changelog") {
+    if (command == "changelog") {
       message.channel.send(changelog);
+    } else {
+      message.channel.send("No permission!");
     }
-  } else if (command == "") {
-    message.channel.send("Enter a valid command!");
   }
 
 });
