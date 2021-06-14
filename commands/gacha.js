@@ -61,10 +61,14 @@ module.exports = {
             }
             //simp
             else if(result >= 10 && result <= 15) {
-                member.roles.add(simpRole);
-                setTimeout(() => {
-                member.roles.remove(simpRole);
-                }, 1.728E+8);
+                if (member.roles.cache.has('842010444478939146')) {
+                    return 'lol simp! you got the simp role lmao haha';
+                } else {
+                    member.roles.add(simpRole);
+                    setTimeout(() => {
+                    member.roles.remove(simpRole);
+                    }, 1.728E+8);
+                }
                 return 'lol simp! you got the simp role lmao haha';
             }
             
@@ -74,20 +78,28 @@ module.exports = {
 
             //rick role
             else if(result >= 21 && result <= 40) {
-                member.roles.add(rickrole);
-                setTimeout(() => {
-                member.roles.remove(rickrole);
-                }, 1.728E+8);
-                message.author.send(rickroleMessage);
+                if (member.roles.cache.has('853588881441423371')) {
+                    return;
+                } else {
+                    member.roles.add(rickrole);
+                    setTimeout(() => {
+                    member.roles.remove(rickrole);
+                    }, 1.728E+8);
+                    message.author.send(rickroleMessage);
+                }
                 return `No reward!`;
             }
                     
             //mute
             else if(result >= 41 && result <= 70) {
-                member.roles.add(shame);
-                setTimeout(() => {
-                member.roles.remove(shame);
-                }, 1.2E+6);
+                if (member.roles.cache.has('841893441059553320')) {
+                    return;
+                } else {
+                    member.roles.add(shame);
+                    setTimeout(() => {
+                    member.roles.remove(shame);
+                    }, 1.2E+6);
+                }
                 return "lmao i can't stop laughing u got muted for 20mins";
             }
             
