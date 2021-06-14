@@ -68,8 +68,8 @@ module.exports = {
                     setTimeout(() => {
                     member.roles.remove(simpRole);
                     }, 1.728E+8);
+                    return 'lol simp! you got the simp role lmao haha';
                 }
-                return 'lol simp! you got the simp role lmao haha';
             }
             
             else if(result >= 16 && result <= 20) {
@@ -79,28 +79,28 @@ module.exports = {
             //rick role
             else if(result >= 21 && result <= 40) {
                 if (member.roles.cache.has('853588881441423371')) {
-                    return;
+                    return "No reward!";
                 } else {
                     member.roles.add(rickrole);
                     setTimeout(() => {
                     member.roles.remove(rickrole);
                     }, 1.728E+8);
                     message.author.send(rickroleMessage);
+                    return `No reward!`;
                 }
-                return `No reward!`;
             }
                     
             //mute
             else if(result >= 41 && result <= 70) {
                 if (member.roles.cache.has('841893441059553320')) {
-                    return;
+                    return "lmao i can't stop laughing u got muted for 20mins";
                 } else {
                     member.roles.add(shame);
                     setTimeout(() => {
                     member.roles.remove(shame);
                     }, 1.2E+6);
+                    return "lmao i can't stop laughing u got muted for 20mins";
                 }
-                return "lmao i can't stop laughing u got muted for 20mins";
             }
             
             else if(result >= 71 && result <=100) {

@@ -9,7 +9,7 @@ module.exports = {
     execute(message, args) {
 
         let timeuser = args[0]
-        let reason = args.slice(1).join("");
+        let reason = args.slice(1).join(" ");
 
         if(!timeuser) return message.channel.send(new Discord.MessageEmbed()
                     .setColor("#FF0000")
