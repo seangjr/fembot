@@ -23,13 +23,6 @@ client.on('ready', () => {
 });
 });
 
-
-//date formatting
-let d = new Date();
-let ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
-let mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
-let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
-
 const prefix = ">";
 
 client.on("message", function(message) {
@@ -48,6 +41,14 @@ client.on("message", function(message) {
 
   if (command === "gacha") {
     client.commands.get('gacha').execute(message, args);
+  }
+
+  if (command === "ping") {
+    client.commands.get('ping').execute(message, args);
+  }
+
+  if (command == "homework" || "hw") {
+    client.commands.get('homework').execute(message, args);
   }
 
   else if (member.roles.cache.has('841246634267377675')) {
