@@ -47,7 +47,7 @@ client.on("message", function(message) {
     client.commands.get('ping').execute(message, args);
   }
 
-  if (command == "homework" || "hw") {
+  if (command === "homework") {
     client.commands.get('homework').execute(message, args);
   }
 
