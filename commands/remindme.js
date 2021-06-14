@@ -11,8 +11,12 @@ module.exports = {
         let timeuser = args[0]
         let reason = args.slice(1).join("");
 
-        if(!timeuser) return message.channel.send("Invalid time argument. Enter valid time!");
-        if(!reason) return message.channel.send("Invalid reason argument. Enter valid reason!");
+        if(!timeuser) return message.channel.send(new Discord.MessageEmbed()
+                    .setColor("#FF0000")
+                    .setDescription("**Invalid time argument!** Enter valid time"));
+        if(!reason) return message.channel.send(new Discord.MessageEmbed()
+                    .setColor("#FF0000")
+                    .setDescription("**Invalid reason argument!** Enter valid reason"));
 
         let remindAuthorEmbed = new Discord.MessageEmbed()
         .setColor('#fc9cd8')
@@ -29,12 +33,12 @@ module.exports = {
 
         db.set(`Remind.${message.author.id}`,Date.now() + ms(timeuser));
         message.channel.send(remindServerEmbed)
+
         const interval = setInterval(() => {
             if(Date.now() > db.fetch(`remind.${message.author.id}`)) {
-                db.delete(`remind.${message.author.id}`)
-                message.author.send(remindAuthorEmbed)
-                .catch(e => console.log(e))
-                clearInterval(interval)
+                db.delete(`remind.${message.author.id}`);
+                message.author.send(remindAuthorEmbed);
+                clearInterval(interval);
             }
         }, 1000);
 
