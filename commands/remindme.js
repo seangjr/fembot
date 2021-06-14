@@ -11,6 +11,9 @@ module.exports = {
         let timeuser = args[0]
         let reason = args.slice(1).join("");
 
+        if(!timeuser) return message.channel.send("Invalid time argument. Enter valid time!");
+        if(!reason) return message.channel.send("Invalid reason argument. Enter valid reason!");
+
         let remindAuthorEmbed = new Discord.MessageEmbed()
         .setColor('#fc9cd8')
         .setAuthor('Femboy Fox Bot', 'https://i.ibb.co/cCcBJKR/9265f52d2767dc5ebd15fc47ac980692.jpg')
@@ -22,10 +25,7 @@ module.exports = {
         .setAuthor('Femboy Fox Bot', 'https://i.ibb.co/cCcBJKR/9265f52d2767dc5ebd15fc47ac980692.jpg')
         .setThumbnail("https://media.discordapp.net/attachments/516435840130482216/687012987525136440/DynoTimer.png")
         .setTitle("Reminder")
-        .setDescription(`Success! Reminding ${message.author.username} at ${timeuser}.\n${reason}`)
-
-        if(!timeuser) return message.channel.send("Invalid time argument. Enter valid time!");
-        if(!reason) return message.channel.send("Invalid reason argument. Enter valid reason!");
+        .setDescription(`Success! Reminding ${message.author.username} at ${timeuser}.\n${reason}`);
 
         db.set(`Remind.${message.author.id}`,Date.now() + ms(timeuser));
         message.channel.send(remindServerEmbed)
