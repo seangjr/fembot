@@ -54,6 +54,10 @@ client.on("message", function(message) {
 
     client.commands.get('homework').execute(message, args);
 
+  } else if (command == "remindme") {
+
+    client.commands.get('remindme').execute(message, args);
+
   } else if (member.roles.cache.has('841246634267377675')) {
     if (command == "changelog") {
       message.channel.send(changelog);
@@ -63,11 +67,6 @@ client.on("message", function(message) {
           .setAuthor(message.author.username, message.author.avatarURL())
           .setDescription("No permission or command doesn't exist!"))
     }
-  } else {
-    message.channel.send(new Discord.MessageEmbed()
-        .setColor("#FF0000")
-        .setAuthor(message.author.username, message.author.avatarURL())
-        .setDescription("No permission or command doesn't exist!"))
   }
 
 });
