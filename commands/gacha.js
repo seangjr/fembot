@@ -1,5 +1,6 @@
 var Chance = require('chance');
 const Discord = require('discord.js');
+const ms = require('ms');
 //chance
 var chance = new Chance();
 var roll = function() {
@@ -67,7 +68,7 @@ module.exports = {
                     member.roles.add(simpRole);
                     setTimeout(() => {
                     member.roles.remove(simpRole);
-                    }, 1.728E+8);
+                    }, ms('2 days'));
                     return 'lol simp! you got the simp role lmao haha';
                 }
             }
@@ -84,7 +85,7 @@ module.exports = {
                     member.roles.add(rickrole);
                     setTimeout(() => {
                     member.roles.remove(rickrole);
-                    }, 1.728E+8);
+                    }, ms('2 days'));
                     message.author.send(rickroleMessage);
                     return `No reward!`;
                 }
@@ -98,7 +99,7 @@ module.exports = {
                     member.roles.add(shame);
                     setTimeout(() => {
                     member.roles.remove(shame);
-                    }, 1.2E+6);
+                    }, ms('20m'));
                     return "lmao i can't stop laughing u got muted for 20mins";
                 }
             }
