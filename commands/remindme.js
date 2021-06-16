@@ -29,7 +29,7 @@ module.exports = {
         .setAuthor('Femboy Fox Bot', 'https://i.ibb.co/cCcBJKR/9265f52d2767dc5ebd15fc47ac980692.jpg')
         .setThumbnail("https://media.discordapp.net/attachments/516435840130482216/687012987525136440/DynoTimer.png")
         .setTitle("Reminder")
-        .setDescription(`Success! Reminding ${message.author.username} in ${timeuser}.\n\n${reason}`);
+        .setDescription(`Success! Reminding **${message.author.username}** in ${timeuser}.\n\n${reason}`);
 
         db.set(`remind.${message.author.id}`,Date.now() + ms(timeuser));
         message.channel.send(remindServerEmbed)

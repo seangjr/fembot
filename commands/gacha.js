@@ -28,7 +28,6 @@ module.exports = {
         //rick rolled link
         var rickroleMessage = new Discord.MessageEmbed()
             .setColor('#010101')
-            .setTitle('Secret Gacha Prize')
             .setAuthor('Femboy Fox Bot', 'https://i.ibb.co/cCcBJKR/9265f52d2767dc5ebd15fc47ac980692.jpg')
             .addField("You won a secret gacha prize! Keep it secret at all costs.", "[Click here](https://www.youtube.com/watch?v=O91DT1pR1ew) to view the prize.")
 
@@ -123,7 +122,12 @@ module.exports = {
             .setAuthor(message.author.username, message.author.avatarURL())
             .setDescription(pull());
 
-        message.channel.send(gachaEmbed);
+        message.channel.send(gachaEmbed)
+                    .then(() => message.react('🕒'));
+        setTimeout(() => {
+            message.reactions.removeAll()
+                .catch(error => console.error('Failed to clear reactions: ', error));
+        }, ms('15m'))
     
     }
 
