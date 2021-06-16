@@ -31,25 +31,6 @@ client.on("message", async function(message) {
 
   if (message.author.bot || !message.content.startsWith(prefix)) return;
 
-  let profileData;
-  try {
-    profileData = await profileModel.findOne({ userID: message.author.id });
-    if(!profileData) {
-      let profile = await profileModel.create({
-        userID: message.author.id,
-        serverID: message.guild.id,
-        coins: 1000,
-        bank: 0
-    });
-
-    }
-
-  } catch (err) {
-
-    console.log(err);
-
-  }
-
   const commandBody = message.content.slice(prefix.length);
   const args = commandBody.split(' ');
   const command = args.shift().toLowerCase();
@@ -85,10 +66,6 @@ client.on("message", async function(message) {
   } else if (command == "changelog") {
 
     message.channel.send(changelog);
-
-  } else if (command == "balance") {
-
-    client.commands.get('balance').execute(message, args);
 
   }
   
