@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 var dataset = require('./dataset.json');
 const fs = require('fs');
+const profileModel = require('./models/profileSchema');
 
 client.commands = new Discord.Collection();
 
@@ -26,9 +27,28 @@ client.on('ready', () => {
 
 const prefix = ">";
 
-client.on("message", function(message) {
+client.on("message", async function(message) {
 
   if (message.author.bot || !message.content.startsWith(prefix)) return;
+
+  let profileData;
+  try {
+    profileData = await profileModel.findOne({ userID: message.author.id });
+    if(!profileData) {
+      let profile = await profileModel.create({
+        userID: message.author.id,
+        serverID: message.guild.id,
+        coins: 1000,
+        bank: 0
+    });
+
+    }
+
+  } catch (err) {
+
+    console.log(err);
+
+  }
 
   const commandBody = message.content.slice(prefix.length);
   const args = commandBody.split(' ');
@@ -66,7 +86,11 @@ client.on("message", function(message) {
 
     message.channel.send(changelog);
 
-  } 
+  } else if (command == "balance") {
+
+    client.commands.get('balance').execute(message, args);
+
+  }
   
   else {
     message.channel.send(new Discord.MessageEmbed()
@@ -74,6 +98,8 @@ client.on("message", function(message) {
         .setAuthor(message.author.username, message.author.avatarURL())
         .setDescription("No permission or command doesn't exist!"))
   }
+
+  
 
 });
 

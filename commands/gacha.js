@@ -126,7 +126,7 @@ module.exports = {
                     .then(function(sentMessage) {
                         sentMessage.react('🕒');
                         setTimeout(() => {
-                            sentMessage.reactions.removeAll().catch(error => console.error('Failed to clear reactions: ', error));
+                            sentMessage.reactions.removeAll().catch(error => console.error('Failed to remove reactions: ', error));
                         }, ms('15m'))
                     })
     
