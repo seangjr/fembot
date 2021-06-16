@@ -123,11 +123,12 @@ module.exports = {
             .setDescription(pull());
 
         message.channel.send(gachaEmbed)
-                    .then(() => message.react('🕒'));
-        setTimeout(() => {
-            message.reactions.removeAll()
-                .catch(error => console.error('Failed to clear reactions: ', error));
-        }, ms('15m'))
+                    .then(function(sentMessage) {
+                        sentMessage.react('🕒');
+                        setTimeout(() => {
+                            sentMessage.reactions.removeAll().catch(error => console.error('Failed to clear reactions: ', error));
+                        }, ms('15m'))
+                    })
     
     }
 
