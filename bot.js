@@ -2,7 +2,6 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 var dataset = require('./dataset.json');
 const fs = require('fs');
-const profileModel = require('./models/profileSchema');
 
 client.commands = new Discord.Collection();
 
@@ -75,8 +74,6 @@ client.on("message", async function(message) {
         .setAuthor(message.author.username, message.author.avatarURL())
         .setDescription("No permission or command doesn't exist!"))
   }
-
-  
 
 });
 
