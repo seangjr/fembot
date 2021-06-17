@@ -3,7 +3,6 @@ const client = new Discord.Client();
 var dataset = require('./dataset.json');
 const mongo = require('./db/mongo');
 const fs = require("fs");
-const WOKCommands = require('wokcommands');
 
 client.commands = new Discord.Collection();
 
