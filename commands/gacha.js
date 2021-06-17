@@ -127,6 +127,10 @@ module.exports = {
                         sentMessage.react('🕒');
                         setTimeout(() => {
                             sentMessage.reactions.removeAll().catch(error => console.error('Failed to remove reactions: ', error));
+                            message.author.send(new Discord.MessageEmbed()
+                                        .setColor("#00FF00")
+                                        .setTitle("Reminder")
+                                        .setDescription("You can use the >gacha function again."));
                         }, ms('15m'))
                     })
     
