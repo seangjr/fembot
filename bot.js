@@ -1,7 +1,9 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 var dataset = require('./dataset.json');
-const fs = require('fs');
+const mongo = require('./db/mongo');
+const fs = require("fs");
+const WOKCommands = require('wokcommands');
 
 client.commands = new Discord.Collection();
 
@@ -13,7 +15,7 @@ for (const file of commandFiles) {
 
 }
 
-client.on('ready', () => {
+client.on('ready', async () => {
 	console.log(`Logged in as ${client.user.tag}!`);
   client.user.setPresence({
     status: 'online',
@@ -21,7 +23,14 @@ client.on('ready', () => {
         name: ">help",
         type: "PLAYING"
     }
-});
+  });
+  await mongo().then(mongoose => {
+    try {
+      console.log('Connected to mongoDB!');
+    } finally {
+      mongoose.connection.close();
+    }
+  })
 });
 
 const prefix = ">";
@@ -32,9 +41,13 @@ client.on("message", async function(message) {
 
   const commandBody = message.content.slice(prefix.length);
   const args = commandBody.split(' ');
-  const command = args.shift().toLowerCase();
+  const commandName = args.shift().toLowerCase();
+  const command = client.commands.get(commandName) || client.commands.find(command => command.aliases && command.aliases.includes(commandName));
 
-  var member = message.member;
+  if(!command) return message.channel.send(new Discord.MessageEmbed()
+        .setColor("#FF0000")
+        .setAuthor(message.author.username, message.author.avatarURL())
+        .setDescription(`No permission or \`${commandName}\` doesn't exist!`));
 
   //changelog
   const changelog = new Discord.MessageEmbed()
@@ -42,37 +55,15 @@ client.on("message", async function(message) {
       .setTitle('Changelog')
       .setDescription(dataset.CHANGELOG);
 
-  if (command === "gacha") {
+  try {
+    command.execute(message, args);
+  } catch (err) {
 
-    client.commands.get('gacha').execute(message, args);
-
-  } else if (command == "ping") {
-
-    client.commands.get('ping').execute(message, args);
-
-  } else if (command == "homework") {
-
-    client.commands.get('homework').execute(message, args);
-
-  } else if (command == "remindme") {
-
-    client.commands.get('remindme').execute(message, args);
-
-  } else if (command == "help") {
-
-    client.commands.get('help').execute(message, args);
-
-  } else if (command == "changelog") {
-
-    message.channel.send(changelog);
-
-  }
-  
-  else {
     message.channel.send(new Discord.MessageEmbed()
-        .setColor("#FF0000")
-        .setAuthor(message.author.username, message.author.avatarURL())
-        .setDescription("No permission or command doesn't exist!"))
+    .setColor("#FF0000")
+    .setAuthor(message.author.username, message.author.avatarURL())
+    .setDescription(`No permission or \`${commandName}\` doesn't exist!`))
+
   }
 
 });

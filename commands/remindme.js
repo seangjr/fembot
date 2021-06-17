@@ -5,7 +5,7 @@ const db = require('quick.db')
 
 module.exports = {
     name: 'remindme',
-    description: 'reminder system',
+    description: 'Reminds a user by usage: >remindme [time] [reason]',
     execute(message, args) {
 
         let timeuser = args[0]

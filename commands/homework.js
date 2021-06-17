@@ -10,8 +10,8 @@ today = mm + '/' + dd + '/' + yyyy;
 
 module.exports = {
     name: 'homework',
+    aliases: ['hw'],
     description: 'sends homework for today!',
-    aliases: ["hw"],
     execute(message, args) {
         message.channel.send(new Discord.MessageEmbed()
                 .setColor("#010101")
